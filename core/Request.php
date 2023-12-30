@@ -4,6 +4,7 @@ namespace app\core;
 
 class Request 
 {
+    // If the path given has something after '?', delete it and only take the /path before
     public function getPath() {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $position = strpos($path, '?');
