@@ -23,7 +23,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return "Not Found";
+            return $this->renderView("_404");
         }
         if (is_string($callback)) {
             return $this->renderView($callback);
@@ -38,6 +38,11 @@ class Router
         include_once Application::$ROOT_DIR."/views/$view.php";
     }
 
+    public function renderContent($viewContent){
+        $layoutContent = $this->layoutContent();
+        return str_replace('{{content}}', $viewContent, $layoutContent);
+    }
+    
     protected function layoutContent() {
         ob_start();
         include_once Application::$ROOT_DIR."/views/layouts/main.php";
@@ -49,4 +54,6 @@ class Router
         include_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
     }
+
+    
 }
