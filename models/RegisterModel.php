@@ -9,4 +9,8 @@ class RegisterModel
     public string $email;
     public string $password;
     public string $passwordConfirm;
+
+    public function register() {
+        echo "Creating new user";
+    }
 }
