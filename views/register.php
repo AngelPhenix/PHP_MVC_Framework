@@ -1,5 +1,9 @@
 <h1>Register Page!</h1>
 
+<?php echo \app\core\form\Form::begin('', 'post') ?>
+  
+<?php \app\core\form\Form::end() ?>
+
 <form action="" method="post">
   <div class=form-group">
     <label>Firstname</label>
