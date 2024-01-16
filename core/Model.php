@@ -9,6 +9,9 @@ abstract class Model
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+    abstract public function rules(): array;
+    public array $errors = [];
+
     
     public function loadData($data){
         foreach($data as $key => $value){
@@ -17,10 +20,6 @@ abstract class Model
             }
         }
     }
-
-    abstract public function rules(): array;
-
-    public array $errors = [];
 
     public function validate(){
         foreach($this->rules() as $attribute => $rules){
@@ -68,5 +67,13 @@ abstract class Model
             self::RULE_MAX => 'Maximum length of this field must be {max}',
             SELF::RULE_MATCH => 'This field must contain the same value as {match}'
         ];
+    }
+
+    public function hasError($attribute){
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute){
+        return $this->errors[$attribute][0] ?? false;
     }
 }
