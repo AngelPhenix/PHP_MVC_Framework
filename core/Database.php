@@ -15,7 +15,8 @@ class Database
     }
 
     public function applyMigrations(){
-
+        $this->createMigrationsTable();
+        $this->getAppliedMigrations();
     }
 
     public function createMigrationsTable(){
@@ -24,5 +25,12 @@ class Database
             migration VARCHAR(255),
             created_at TIMESTAMP_DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;");
+    }
+
+    public function getAppliedMigrations(){
+        $statement = $this->pdo->prepare("SELECT migration FROM migrations");
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_COLUMN);
     }
 }
