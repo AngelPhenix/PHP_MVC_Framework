@@ -23,9 +23,9 @@ class Database
 
     public function createMigrationsTable(){
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS migrations (
-            id INT AUTO_INCREMENT PRIMARY_KEY,
+            id INT AUTO_INCREMENT PRIMARY KEY,
             migration VARCHAR(255),
-            created_at TIMESTAMP_DEFAULT CURRENT_TIMESTAMP
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=INNODB;");
     }
 
