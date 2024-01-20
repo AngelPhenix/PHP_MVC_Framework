@@ -17,6 +17,8 @@ class Database
     public function applyMigrations(){
         $this->createMigrationsTable();
         $this->getAppliedMigrations();
+
+        $files = scandir(Application::$ROOT_DIR.'/migrations');
     }
 
     public function createMigrationsTable(){
