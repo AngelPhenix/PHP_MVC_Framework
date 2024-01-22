@@ -29,7 +29,8 @@ class Database
 
             require_once Application::$ROOT_DIR.'/migrations/'.$migration;
             $className = pathinfo($migration, PATHINFO_FILENAME);
-            $instance = new $className();
+            $class = "app\migrations\\".$className;
+            $instance = new $class();
             echo "Applying migration $migration".PHP_EOL;
             $instance->up();
             echo "Applied migration $migration".PHP_EOL;
