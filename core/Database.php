@@ -18,6 +18,8 @@ class Database
         $this->createMigrationsTable();
         $appliedMigrations = $this->getAppliedMigrations();
 
+        $newMigrations = [];
+
         $files = scandir(Application::$ROOT_DIR.'/migrations');
         $toApplyMigrations = array_diff($files, $appliedMigrations);
         foreach ($toApplyMigrations as $migration){
@@ -31,6 +33,13 @@ class Database
             echo "Applying migration $migration".PHP_EOL;
             $instance->up();
             echo "Applied migration $migration".PHP_EOL;
+            $newMigrations[] = $migration;
+        }
+
+        if (!empty($newMigrations)) {
+            $this->saveMigrations($newMigrations);
+        } else {
+            echo "All migrations are applied";
         }
     }
 
@@ -47,5 +56,13 @@ class Database
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_COLUMN);
+    }
+
+    public function saveMigrations(array $migrations){
+        $str = implode(",", array_map(fn($m) => "('$m')", $migrations));
+        $statement = $this->pdo->prepare("INSERT INTO migrations (migration) VALUES 
+            $str
+            ");
+        $statement->execute();
     }
 }
