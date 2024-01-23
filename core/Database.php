@@ -31,16 +31,16 @@ class Database
             $className = pathinfo($migration, PATHINFO_FILENAME);
             $class = "app\migrations\\".$className;
             $instance = new $class();
-            echo "Applying migration $migration".PHP_EOL;
+            $this->log("Applying migration $migration");
             $instance->up();
-            echo "Applied migration $migration".PHP_EOL;
+            $this->log("Applied migration $migration");
             $newMigrations[] = $migration;
         }
 
         if (!empty($newMigrations)) {
             $this->saveMigrations($newMigrations);
         } else {
-            echo "All migrations are applied";
+            $this->log("All migrations are applied");
         }
     }
 
