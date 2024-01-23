@@ -66,4 +66,8 @@ class Database
             ");
         $statement->execute();
     }
+
+    protected function log($message){
+        echo '['.date('Y-m-d H:i:s').'] - ' . $message . PHP_EOL;
+    }
 }
