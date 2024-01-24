@@ -12,6 +12,10 @@ class User extends DbModel
     public string $password = '';
     public string $confirmPassword = '';
 
+    public function tableName(): string{
+        return 'user';
+    }
+
     public function register() {
         echo "Creating new user";
     }
