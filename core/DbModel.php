@@ -11,9 +11,9 @@ abstract class DbModel extends Model
     public function save(){
         $tableName = $this->tableName();
         $attributes = $this->attributes();
-        $params = [];
-        $statement = self::prepare("INSERT INTO $tableName (firstname, lastname) 
-            VALUES(:firstname, :lastname)");
+        $params = array_map(fn($aatr) => ":$attr", $attributes);
+        $statement = self::prepare("INSERT INTO $tableName (".implode(',', $attributes).") 
+            VALUES(".implode(',', $params).")");
     }
 
     public static function prepare($sql){
