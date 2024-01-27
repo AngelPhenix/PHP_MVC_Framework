@@ -9,6 +9,7 @@ abstract class Model
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'max';
     public const RULE_MATCH = 'match';
+    public const RULE_UNIQUE = 'unique';
     abstract public function rules(): array;
     public array $errors = [];
 
@@ -65,7 +66,7 @@ abstract class Model
             self::RULE_EMAIL => 'This field must be a valid email address',
             self::RULE_MIN => 'Minimum length of this field must be {min}',
             self::RULE_MAX => 'Maximum length of this field must be {max}',
-            SELF::RULE_MATCH => 'This field must contain the same value as {match}'
+            Self::RULE_MATCH => 'This field must contain the same value as {match}'
         ];
     }
 
