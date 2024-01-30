@@ -13,6 +13,10 @@ abstract class Model
     abstract public function rules(): array;
     public array $errors = [];
 
+    public function labels(): array{
+        return [];
+    }
+
     
     public function loadData($data){
         foreach($data as $key => $value){
