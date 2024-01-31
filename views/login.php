@@ -1,4 +1,8 @@
-<h1>Login Page!</h1>
+<?php 
+/** @var $model \app\models\User */
+?>
+
+<h1>Login</h1>
 
 <?php $form = \app\core\form\Form::begin('', 'post') ?>
   <?php echo $form->field($model, 'firstname') ?>
