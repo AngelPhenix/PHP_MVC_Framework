@@ -20,7 +20,7 @@ class LoginForm extends Model
     public function login(){
         $user = User::findOne(['email' => $this->email]);
         if(!$user){
-            $this->addError('email', 'User does not exists with this email');
+            $this->addErrorForRule('email', 'User does not exists with this email');
         }
         Application::$app->login();
     }
