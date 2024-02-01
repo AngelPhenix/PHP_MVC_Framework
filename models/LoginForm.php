@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Model;
+use app\core\Application;
 
 class LoginForm extends Model
 {
@@ -14,5 +15,13 @@ class LoginForm extends Model
             'email' => [self::RULE_REQUIRED, self::RULE_EMAIL],
             'password' => [self::RULE_REQUIRED]
         ];
+    }
+
+    public function login(){
+        $user = User::findOne(['email' => $this->email]);
+        if(!$user){
+            $this->addError('email', 'User does not exists with this email');
+        }
+        Application::$app->login();
     }
 }
