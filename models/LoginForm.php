@@ -29,4 +29,11 @@ class LoginForm extends Model
         }
         return Application::$app->login($user);
     }
+
+    public function labels(): array{
+        return [
+            'email' => 'Your email',
+            'password' => 'Password'
+        ];
+    }
 }
