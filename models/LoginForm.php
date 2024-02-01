@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\core\Model;
 use app\core\Application;
+use app\models\User;
 
 class LoginForm extends Model
 {
