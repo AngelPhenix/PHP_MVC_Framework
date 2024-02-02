@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\models\User;
+
 class Application 
 {
     public static string $ROOT_DIR;
@@ -11,7 +13,7 @@ class Application
     public Request $request;
     public Response $response;
     public Database $db;
-    public ?DbModel $user;
+    public User $user;
     public Session $session;
     public static Application $app;
     public Controller $controller;
