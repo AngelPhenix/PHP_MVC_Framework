@@ -52,6 +52,7 @@ class Application
         $primaryKey = $user->primaryKey();
         $primaryValue = $user->{$primaryKey};
         $this->session->set('user', $primaryValue);
+        return true;
     }
 
     public function logout(){
