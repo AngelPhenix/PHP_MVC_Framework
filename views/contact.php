@@ -7,6 +7,8 @@ $this->title = 'Contact';
 
 <h1>Contact us!</h1>
 
+<?php $form = \app\core\form\Form::begin('', 'post') ?>
+<?php echo $form->field();
 <form action="" method="post">
   <div class=form-group">
     <label>Subject</label>
