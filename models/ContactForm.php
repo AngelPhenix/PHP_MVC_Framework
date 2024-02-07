@@ -15,6 +15,14 @@ class ContactForm extends Model
             'subject' => [self::RULE_REQUIRED],
             'email' => [self::RULE_REQUIRED],
             'body' => [self::RULE_REQUIRED],
-        ]
+        ];
+    }
+
+    public function labels(): array{
+        return [
+            'subject' => 'Enter your subject',
+            'email' => 'Enter your email',
+            'body' => 'Message to send',
+        ];
     }
 }
