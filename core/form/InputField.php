@@ -5,14 +5,13 @@ namespace app\core\form;
 use app\core\Model;
 use app\core\form\BaseField;
 
-class Field extends BaseField
+class IntputField extends BaseField
 {
     public const TYPE_TEXT = 'text';
     public const TYPE_PASSWORD = 'password';
     public const TYPE_NUMBER = 'number';
+
     public string $type;
-    public Model $model;
-    public string $attribute;
 
     public function __construct(Model $model, string $attribute){
         $this->type = self::TYPE_TEXT;
