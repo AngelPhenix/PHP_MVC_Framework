@@ -25,4 +25,8 @@ class ContactForm extends Model
             'body' => 'Message to send',
         ];
     }
+
+    public function send(){
+        return true;
+    }
 }
