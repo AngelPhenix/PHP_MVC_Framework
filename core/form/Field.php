@@ -16,31 +16,20 @@ class Field extends BaseField
 
     public function __construct(Model $model, string $attribute){
         $this->type = self::TYPE_TEXT;
-        $this->model = $model;
-        $this->attribute = $attribute;
-    }
-
-    public function __toString(){
-        return sprintf('
-            <div class="form-group">
-                <label>%s</label>
-                <input type="%s" name="%s" value="%s" class="form-control%s">
-                <div class="invalid-feedback">
-                    %s
-                </div>
-            </div>
-        ', 
-            $this->model->getLabel($this->attribute),
-            $this->type,
-            $this->attribute, 
-            $this->model->{$this->attribute},
-            $this->model->hasError($this->attribute) ? ' is-invalid' : '',
-            $this->model->getFirstError($this->attribute)
-        );
+        parent::__construct($model, $attribute);
     }
 
     public function passwordField(){
         $this->type = self::TYPE_PASSWORD;
         return $this;
+    }
+
+    public function renderInput(): string{
+        return sprintf('<input type="%s" name="%s" value="%s" class="form-control%s">',
+        $this->type,
+        $this->attribute, 
+        $this->model->{$this->attribute},
+        $this->model->hasError($this->attribute) ? ' is-invalid' : ''
+    );
     }
 }
