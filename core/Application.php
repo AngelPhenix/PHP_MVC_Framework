@@ -2,9 +2,7 @@
 
 namespace app\core;
 
-use app\models\User;
 use app\core\db\Database;
-use app\core\db\DbModel;
 
 class Application 
 {
@@ -16,7 +14,7 @@ class Application
     public Request $request;
     public Response $response;
     public Database $db;
-    public User $user;
+    public UserModel $user;
     public Session $session;
     public static Application $app;
     public Controller $controller;
@@ -59,7 +57,7 @@ class Application
         $this->controller = $controller;
     }
 
-    public function login(DbModel $user){
+    public function login(UserModel $user){
         $this->user = $user;
         $primaryKey = $user->primaryKey();
         $primaryValue = $user->{$primaryKey};
